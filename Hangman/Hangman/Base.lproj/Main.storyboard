@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Game View Controller-->
+        <!--Start Screen View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="GameViewController" customModule="Hangman" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartScreenViewController" customModule="Hangman" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +18,328 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hangman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVp-Yb-9vc">
+                                <rect key="frame" x="192" y="270" width="217" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZVp-Yb-9vc" secondAttribute="height" multiplier="217:60" id="vqt-p6-6gz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPj-ZJ-3HZ">
+                                <rect key="frame" x="260" y="358" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GPj-ZJ-3HZ" secondAttribute="height" multiplier="8:3" id="D9I-9X-Esr"/>
+                                </constraints>
+                                <state key="normal" title="New Game"/>
+                                <connections>
+                                    <segue destination="cBw-DM-0mm" kind="show" id="krw-e0-8YI"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GPj-ZJ-3HZ" firstAttribute="top" secondItem="ZVp-Yb-9vc" secondAttribute="bottom" constant="28" id="7Dz-Qi-un0"/>
+                            <constraint firstItem="ZVp-Yb-9vc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JrR-z8-fGn"/>
+                            <constraint firstItem="ZVp-Yb-9vc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K8K-Fx-UjD"/>
+                            <constraint firstItem="GPj-ZJ-3HZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZAT-hr-mLR"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="340" y="387"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="q9r-ej-1Sg">
+            <objects>
+                <viewController id="cBw-DM-0mm" customClass="GameViewController" customModule="Hangman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eG8-LG-S6H"/>
+                        <viewControllerLayoutGuide type="bottom" id="sUB-uO-lcu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1CO-vg-iGF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sO3-Ts-IXj">
+                                <rect key="frame" x="180" y="410" width="240" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xm1-Fg-zOg">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="A"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="FWy-h6-rEw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5e-m2-R10">
+                                        <rect key="frame" x="35" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="B"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="rOv-cd-1Mf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHk-xk-atj">
+                                        <rect key="frame" x="70" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="C"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="xPf-vi-3m5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETi-Yp-Tzz">
+                                        <rect key="frame" x="105" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="D"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="431-od-1SQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9N-cc-R4m">
+                                        <rect key="frame" x="140" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="E"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="wLl-6m-R11"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGH-hu-C6t">
+                                        <rect key="frame" x="175" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="F"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="agg-a0-YzR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HF-au-lJx">
+                                        <rect key="frame" x="210" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="G"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="CXa-e3-KCb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Age-cu-OwS"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bAC-CI-K8v" userLabel="Row2">
+                                <rect key="frame" x="180" y="441" width="240" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc9-9w-8ct">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="H"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="F5F-k6-IXH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-kC-sle">
+                                        <rect key="frame" x="35" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="gw6-kC-sle" secondAttribute="height" multiplier="1:1" id="4Qp-lR-JqM"/>
+                                        </constraints>
+                                        <state key="normal" title="O"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="msZ-RY-FKC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xA-PJ-3K4">
+                                        <rect key="frame" x="70" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="2xA-PJ-3K4" secondAttribute="height" multiplier="1:1" id="wx6-lK-qvQ"/>
+                                        </constraints>
+                                        <state key="normal" title="P"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="PKN-rc-H0g"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyZ-KT-Mec">
+                                        <rect key="frame" x="105" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="zyZ-KT-Mec" secondAttribute="height" multiplier="1:1" id="VFL-yR-XUC"/>
+                                        </constraints>
+                                        <state key="normal" title="Q"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="Cph-9h-2tL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sb-Sa-Pg1">
+                                        <rect key="frame" x="140" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="0sb-Sa-Pg1" secondAttribute="height" multiplier="1:1" id="hpd-SF-Lby"/>
+                                        </constraints>
+                                        <state key="normal" title="R"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="AcG-Mn-5OA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2r-h6-DuE">
+                                        <rect key="frame" x="175" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="X2r-h6-DuE" secondAttribute="height" multiplier="1:1" id="J9M-Ef-DEl"/>
+                                        </constraints>
+                                        <state key="normal" title="S"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="gkP-db-Whi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5P6-A7-EUx">
+                                        <rect key="frame" x="210" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5P6-A7-EUx" secondAttribute="height" multiplier="1:1" id="lXo-ny-vwK"/>
+                                        </constraints>
+                                        <state key="normal" title="T"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="aHw-p8-6yE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SV5-YJ-RO3"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mF1-Zt-KaY" userLabel="Row3">
+                                <rect key="frame" x="180" y="472" width="240" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VI7-ux-Pet">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="I"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="p1r-Cs-2JW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsy-Cx-crP" userLabel="J">
+                                        <rect key="frame" x="42" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="J"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="zDe-mp-CnI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGN-Ua-9zH">
+                                        <rect key="frame" x="84" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="K"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="uvn-Oj-3tI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sby-WU-oLQ">
+                                        <rect key="frame" x="126" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="L"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="xLv-vf-lGz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLh-Pa-vXa">
+                                        <rect key="frame" x="168" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="M"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="yQo-dC-c4S"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F34-0Y-o2d">
+                                        <rect key="frame" x="210" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="N"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="fhh-wd-GwU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UrR-Gp-6c6"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hyc-gx-FJJ" userLabel="Row4">
+                                <rect key="frame" x="180" y="503" width="240" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eut-Hl-Zcn">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="U"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="0aZ-VP-gnR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYD-fX-Tx2" userLabel="V">
+                                        <rect key="frame" x="42" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="V"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="Jb8-Ow-75m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TH0-L4-a4U">
+                                        <rect key="frame" x="84" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="W"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="jeC-Js-TO0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2MQ-aP-Wwo">
+                                        <rect key="frame" x="126" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="jYV-Yr-6sq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="me5-ff-O8Q">
+                                        <rect key="frame" x="168" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Y"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="ii5-Oi-ggY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wo4-A6-OD0">
+                                        <rect key="frame" x="210" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="Z"/>
+                                        <connections>
+                                            <action selector="makeGuess:" destination="cBw-DM-0mm" eventType="touchUpInside" id="Bl3-3e-NSw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2cY-St-c8n"/>
+                                </constraints>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKh-vu-zqM">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="8tU-A4-Pzr"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="nm3-MA-hvn"/>
+                                    <constraint firstAttribute="width" secondItem="QKh-vu-zqM" secondAttribute="height" multiplier="1:1" id="yj9-dT-DQC"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="vJB-am-EhU">
+                                <rect key="frame" x="50" y="164" width="500" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vJB-am-EhU" firstAttribute="leading" secondItem="1CO-vg-iGF" secondAttribute="leadingMargin" constant="30" id="9gX-Nn-GFU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vJB-am-EhU" secondAttribute="trailing" constant="30" id="BBs-9k-SHk"/>
+                            <constraint firstItem="hyc-gx-FJJ" firstAttribute="top" secondItem="mF1-Zt-KaY" secondAttribute="bottom" constant="1" id="JeB-rP-W4k"/>
+                            <constraint firstItem="QKh-vu-zqM" firstAttribute="top" secondItem="vJB-am-EhU" secondAttribute="bottom" id="MXR-QS-7rD"/>
+                            <constraint firstItem="mF1-Zt-KaY" firstAttribute="centerX" secondItem="1CO-vg-iGF" secondAttribute="centerX" id="MbI-Rr-czw"/>
+                            <constraint firstItem="hyc-gx-FJJ" firstAttribute="centerX" secondItem="1CO-vg-iGF" secondAttribute="centerX" id="PEJ-a9-DDE"/>
+                            <constraint firstItem="sO3-Ts-IXj" firstAttribute="centerX" secondItem="1CO-vg-iGF" secondAttribute="centerX" id="REz-La-WO1"/>
+                            <constraint firstItem="QKh-vu-zqM" firstAttribute="centerY" secondItem="1CO-vg-iGF" secondAttribute="centerY" id="Xy3-dC-dje"/>
+                            <constraint firstItem="QKh-vu-zqM" firstAttribute="centerX" secondItem="1CO-vg-iGF" secondAttribute="centerX" id="ags-Ph-OVy"/>
+                            <constraint firstItem="sO3-Ts-IXj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QKh-vu-zqM" secondAttribute="bottom" constant="10" id="e2o-bB-LS3"/>
+                            <constraint firstItem="vJB-am-EhU" firstAttribute="centerX" secondItem="1CO-vg-iGF" secondAttribute="centerX" id="ih2-ys-Ocb"/>
+                            <constraint firstItem="mF1-Zt-KaY" firstAttribute="top" secondItem="bAC-CI-K8v" secondAttribute="bottom" constant="1" id="nYN-23-vaO"/>
+                            <constraint firstItem="bAC-CI-K8v" firstAttribute="centerX" secondItem="1CO-vg-iGF" secondAttribute="centerX" id="qkA-g8-eeQ"/>
+                            <constraint firstItem="bAC-CI-K8v" firstAttribute="top" secondItem="sO3-Ts-IXj" secondAttribute="bottom" constant="1" id="sfO-cM-ORI"/>
+                            <constraint firstItem="sUB-uO-lcu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hyc-gx-FJJ" secondAttribute="bottom" constant="15" id="wis-mC-ATp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="Row1" destination="sO3-Ts-IXj" id="8bd-Sz-Sjz"/>
+                        <outlet property="hangmanImageView" destination="QKh-vu-zqM" id="hkT-gV-zqQ"/>
+                        <outlet property="phraseLabel" destination="vJB-am-EhU" id="bXZ-JT-lwa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0yx-Rx-UAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1109" y="387"/>
         </scene>
     </scenes>
 </document>
